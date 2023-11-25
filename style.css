@@ -93,9 +93,21 @@ nav{
     }
 }
 
+#drawer-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.033);
+    top: 0%;
+    left: 0%;
 
+    -webkit-backdrop-filter: brightness(50%);
+    backdrop-filter: brightness(50%);
+
+    z-index: 1000;
+}
 #drawer{
-    height: 100vh;
+    height: 100%;
     width: 40vh;
     background-color: #008000;
 
@@ -103,8 +115,6 @@ nav{
     top: 0%;
     left: -41%;
     /* display: none; */
-    transition: left 0.6s ease;
 
-    z-index: 500;
-
+    z-index: 1001;
 }

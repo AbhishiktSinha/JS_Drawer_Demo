@@ -1,33 +1,50 @@
 const drawer = document.createElement("aside");
+const drawerContainer = document.createElement("div");
+
 // styling the drawer
+drawerContainer.id="drawer-container";
+
 drawer.id = "drawer";
 drawer.setAttribute("data-isVisible", "false")
 
+
 const body = document.querySelector("body");
-body.appendChild(drawer);
 
 const main = document.querySelector("main");
 
 const toggleButton = document.querySelector("button.drawer-toggle-button");
+
 toggleButton.addEventListener("click", (event) => {
-
-    drawer.style.transition = "left 0.6s ease";
-    drawer.style.left = "0%";
-    drawer.setAttribute("data-isVisible", "true");
-
+    
+    body.appendChild(drawerContainer);
+    drawerContainer.appendChild(drawer);
+    
     body.style.overflowY = "hidden";
-    main.style.filter = "brightness(50%)";
+    
+    setTimeout(()=>{
+        drawer.style.transition="left 0.2s ease";
+        drawer.style.left = "0%";
+        drawer.setAttribute("data-isVisible", "true");
+    }, 100);
+    
     event.stopPropagation();
 })
 
-body.addEventListener("click", (event) => {
+drawerContainer.addEventListener("click", (event) => {
     if (!drawer.contains(event.target) && drawer.getAttribute("data-isVisible") === "true") {
         console.log(event.target);
-        drawer.style.left = "-40%";
-        body.style.overflowY = "scroll";
-        main.style.filter = "brightness(100%)";
-        // drawer.style.display: no
 
+        setTimeout(()=>{
+            drawer.style.transition="left 0.2s ease";
+            drawer.style.left = "-41%";        
+            drawer.setAttribute("isVisible", "false");                
+        }, 50);
+        
+        setTimeout(()=>{
+            body.removeChild(drawerContainer);
+            body.style.overflowY = "scroll";
+        },90);
+        
     }
 })
 
